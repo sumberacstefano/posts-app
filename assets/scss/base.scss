@@ -1,0 +1,63 @@
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	-webkit-tap-highlight-color: transparent;
+}
+
+*::after {
+	box-sizing: border-box;
+}
+
+html {
+	text-size-adjust: 100%;
+}
+
+body {
+	line-height: 1.5;
+	overflow-x: hidden;
+	font-family: 'Open Sans', sans-serif;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	font-family: 'Work Sans', sans-serif;
+	line-height: 1;
+}
+
+h1{
+	font-size: 40px;
+}
+
+a,
+button {
+	font-family: 'Work Sans', sans-serif;
+}
+
+.noscroll {
+	overflow: hidden;
+}
+
+a {
+	text-decoration: none;
+	color: inherit;
+}
+
+hr{
+	margin: 24px 0px;
+	border: 0;
+	border-bottom: 1px solid #000;
+}
+
+.flex{
+	display: flex;
+	align-items: flex-start;
+}
+
+.rounded {
+	border-radius: 6px;
+}

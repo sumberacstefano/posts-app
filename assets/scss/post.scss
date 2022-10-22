@@ -1,0 +1,32 @@
+.post{
+	position: relative;
+	overflow: hidden;
+	max-width: 1024px;
+	margin: 100px auto;
+
+	img {
+		border-radius: 6px;
+	}
+
+	h1 {
+		text-align: center;
+	}
+
+
+	&__user {
+		display: flex;
+		align-items: center;
+
+		img {
+			width: 15px;
+		}
+	}
+
+	&__comments{
+		&__single{
+			background: #1a1a1a;
+			border-radius: 6px;
+			padding: 16px 16px;
+		}
+	}
+}
