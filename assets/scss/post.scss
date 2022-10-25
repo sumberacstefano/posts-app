@@ -8,11 +8,6 @@
 		border-radius: 6px;
 	}
 
-	h1 {
-		text-align: center;
-	}
-
-
 	&__user {
 		display: flex;
 		align-items: center;
@@ -22,11 +17,35 @@
 		}
 	}
 
+	&__image{
+		width: 100%;
+	}
+
 	&__comments{
 		&__single{
 			background: #1a1a1a;
 			border-radius: 6px;
 			padding: 16px 16px;
+		}
+	}
+}
+
+
+.posts {
+	max-width: 1024px;
+	min-height: 100vh;
+	margin: 100px auto;
+
+	&__single {
+		position: relative;
+		overflow: hidden;
+
+		img {
+			width: 100%;
+			object-fit: cover;
+			border-radius: 4px;
+			max-height: 250px;
+			min-height: 250px;
 		}
 	}
 }

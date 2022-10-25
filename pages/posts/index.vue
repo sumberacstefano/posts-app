@@ -1,6 +1,6 @@
 <template>
 	<main>
-		<section class="search">
+		<section class="search mlr-main">
 			<form @submit.prevent="searchQuery">
 				<div class="search__input">
 					<input
@@ -22,7 +22,7 @@
 				</div>
 			</form>
 		</section>
-		<section class="posts">
+		<section class="posts mlr-main">
 			<div v-if="posts.length === 0">
 				Sorry no results for this search.
 			</div>
@@ -77,12 +77,14 @@ export default {
 		]
 	},
 
-	mounted () {
+	created () {
 		this.searchQuery()
 	},
 
 	methods: {
 		async searchQuery () {
+			// Limited to 20 posts, we could create pagination with api parameter _limit & _page,
+			// making the application fetch data(posts) for each page++ until data is [] an empty array.
 			await this.$axios
 				.get(process.env.baseApi + 'posts?', {
 					params: {
@@ -98,24 +100,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.posts {
-	max-width: 1024px;
-	margin: 100px auto;
-	min-height: 100vh;
-
-	&__single {
-		position: relative;
-		overflow: hidden;
-
-		img {
-			width: 100%;
-			object-fit: cover;
-			border-radius: 4px;
-			max-height: 250px;
-			min-height: 250px;
-		}
-	}
-}
 
 .search {
   position: relative;

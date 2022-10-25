@@ -1,10 +1,10 @@
 <template>
 	<main>
-		<section class="post" v-if="postData">
+		<section class="post mlr-main" v-if="postData">
 			<nuxt-link to="/posts">Back to posts</nuxt-link>
 
 			<h1 class="mt-xl">{{ postData.title }}</h1>
-			<img src="https://via.placeholder.com/1024x400" class="mt-lg" />
+			<img src="https://via.placeholder.com/1024x400" class="post__image mt-lg" />
 			<p class="fs-md mt-lg">{{ postData.body }}</p>
 
 			<hr />
@@ -65,7 +65,7 @@ export default {
 			]
 		}
 	},
-	async mounted () {
+	async fetch () {
 		await this.$axios
 			.get(process.env.baseApi + 'posts/' + this.$route?.params?.id)
 			.then(data => {
