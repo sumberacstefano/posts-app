@@ -4,14 +4,14 @@
 			<form @submit.prevent="searchQuery">
 				<div class="search__input">
 					<input
+						v-model="userInput"
 						type="search"
 						class="input input--search"
 						placeholder="Search by post titles..."
 						maxlength="50"
-						v-model="userInput"
 					/>
 
-					<span class="icon-search"></span>
+					<span class="icon-search" />
 
 					<button
 						type="submit"
@@ -24,7 +24,7 @@
 		</section>
 		<section class="posts mlr-main">
 			<div v-if="posts.length === 0">
-				Sorry, no results for <strong>"{{ userInput }}"</strong>. Try something else...
+				Sorry, no results for <strong>"{{ userInput | capitalize }}"</strong>. Try something else...
 			</div>
 			<div v-else>
 				<SinglePost v-for="post in posts" :key="post.id" :postData="post" />
@@ -35,6 +35,16 @@
 
 <script>
 export default {
+	filters: {
+		capitalize (value) {
+			if (!value) {
+				return ''
+			}
+			value = value.toString()
+			return value.charAt(0).toUpperCase() + value.slice(1)
+		}
+	},
+
 	data: () => ({
 		posts: [],
 		userInput: ''
