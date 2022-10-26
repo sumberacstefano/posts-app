@@ -24,7 +24,7 @@
 		</section>
 		<section class="posts mlr-main">
 			<div v-if="posts.length === 0">
-				Sorry no results for this search.
+				Sorry, no results for <strong>"{{ userInput }}"</strong>. Try something else...
 			</div>
 			<div v-else>
 				<SinglePost v-for="post in posts" :key="post.id" :postData="post" />
@@ -39,6 +39,8 @@ export default {
 		posts: [],
 		userInput: ''
 	}),
+	// Head function is defined in each page. The content inside the function is used for SEO.
+	// This way we can have unique title, description, opengraph title, description and image for each page.
 	head: {
 		title: 'Posts app | Homepage',
 		meta: [
@@ -100,14 +102,4 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-
-.search {
-  position: relative;
-
-  &__input {
-    position: relative;
-    display: flex;
-    align-items: center;
-  }
-}
 </style>

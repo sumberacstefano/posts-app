@@ -2,7 +2,7 @@
 	position: relative;
 	overflow: hidden;
 	max-width: 1024px;
-	margin: 100px auto;
+	margin: auto;
 
 	img {
 		border-radius: 6px;
@@ -27,6 +27,12 @@
 			border-radius: 6px;
 			padding: 16px 16px;
 		}
+	}
+
+	&--nomargin{
+		margin-bottom: 20px;
+		margin-top: 0px !important;
+		padding-top: 80px;
 	}
 }
 

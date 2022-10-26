@@ -1,3 +1,4 @@
+// classes that get attached to <main> tag between changing routes used to make a transition
 .page-enter,
 .page-enter-active,
 .page-enter-to {
@@ -9,4 +10,15 @@
 .page-leave-active {
   opacity: 0;
   transition: opacity 0.5s;
+}
+
+// transition fade
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.5s ease;
+}
+
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
 }

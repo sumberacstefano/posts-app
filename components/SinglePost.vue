@@ -1,72 +1,94 @@
 <template>
-	<div class="post mt-xl">
-		<nuxt-link :to="'posts/' + postData.id">
+	<div class="post mt-xl" :class="{'post--nomargin': $route.name === 'posts-id'}">
+		<nuxt-link v-if="$route.name !== 'posts-id'" :to="'posts/' + postData.id">
 			<div class="post__user">
 				<img src="@/assets/img/user.png" />
-				<p class="fs-sm ml-sm">{{ user.name }}</p>
+				<p class="fs-sm ml-sm">
+					{{ user.name }}
+				</p>
 			</div>
-			<h2 class="fs-xl mt-sm">{{ postData.title }}</h2>
+			<h2 class="fs-xl mt-sm">
+				{{ postData.title }}
+			</h2>
 			<img
 				:src="`https://via.placeholder.com/1024x400`"
 				class="post__image mt-lg rounded"
 			/>
 		</nuxt-link>
-		<fade-transition v-if="!commentsBoolean">
+
+		<div v-else>
+			<div class="post__user">
+				<img src="@/assets/img/user.png" />
+				<p class="fs-sm ml-sm">
+					{{ user.name }}
+				</p>
+			</div>
+			<h2 class="fs-xl mt-sm">
+				{{ postData.title }}
+			</h2>
+			<img
+				:src="`https://via.placeholder.com/1024x400`"
+				class="post__image mt-lg rounded"
+			/>
+			<p class="fs-md mt-lg">
+				{{ postData.body }}
+			</p>
+		</div>
+
+		<div v-if="$route.name !== 'posts-id'">
 			<button
+				v-if="!commentsBoolean"
 				class="btn btn--primary mt-lg mb-lg"
 				@click="fetchComments()"
 			>
-				<fade-transition v-if="commentsBoolean">
-					<p>- Hide comments</p>
-				</fade-transition>
-
-				<fade-transition v-else>
-					<p>+ Show comments</p>
-				</fade-transition>
+				<p>
+					+ Show comments
+				</p>
 			</button>
-		</fade-transition>
 
-		<fade-transition v-else>
 			<button
+				v-else
 				class="btn btn--primary mt-lg mb-lg"
 				@click="fetchComments()"
 			>
-				<p>- Hide comments</p>
+				<p>
+					- Hide comments
+				</p>
 			</button>
-		</fade-transition>
+		</div>
 
 		<collapse-transition>
-			<div class="post__comments visible" v-show="commentsBoolean">
+			<div v-show="commentsBoolean" class="post__comments visible">
 				<SingleComment
 					v-for="comment in comments"
 					:key="comment.id"
 					:comment="comment"
-				></SingleComment>
+				/>
 			</div>
 		</collapse-transition>
 	</div>
 </template>
 
 <script>
-import { CollapseTransition, FadeTransition } from 'vue2-transitions'
+import { CollapseTransition } from 'vue2-transitions'
 
 export default {
+	components: {
+		CollapseTransition
+	},
+
 	props: {
 		postData: {
 			type: Object,
 			required: true
 		}
 	},
+
 	data: () => ({
 		comments: [],
 		user: [],
 		commentsBoolean: false
 	}),
-
-	components: {
-		CollapseTransition,
-		FadeTransition
-	},
 
 	async fetch () {
 		await this.$axios
@@ -75,7 +97,6 @@ export default {
 				this.user = data.data
 			})
 	},
-
 	methods: {
 		async fetchComments () {
 			// Application is currently showing all comments that each post has.

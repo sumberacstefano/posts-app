@@ -1,20 +1,24 @@
 <template>
 	<main>
-		<section class="post mlr-main" v-if="postData">
-			<nuxt-link to="/posts">Back to posts</nuxt-link>
+		<section v-if="postData" class="post ptb-xl mlr-main">
+			<nuxt-link to="/posts">
+				Back to posts
+			</nuxt-link>
 
-			<h1 class="mt-xl">{{ postData.title }}</h1>
-			<img src="https://via.placeholder.com/1024x400" class="post__image mt-lg" />
-			<p class="fs-md mt-lg">{{ postData.body }}</p>
+			<SinglePost :postData="postData" />
 
 			<hr />
-			<p class="fs-lg">Comments</p>
+
+			<p class="fs-lg">
+				Comments
+			</p>
+
 			<div class="post__comments visible mt-lg">
 				<SingleComment
 					v-for="comment in comments"
 					:key="comment.id"
 					:comment="comment"
-				></SingleComment>
+				/>
 			</div>
 		</section>
 	</main>
@@ -26,6 +30,21 @@ export default {
 		postData: '',
 		comments: ''
 	}),
+	async fetch () {
+		await this.$axios
+			.get(process.env.baseApi + 'posts/' + this.$route?.params?.id)
+			.then(data => {
+				this.postData = data.data
+			})
+
+		await this.$axios
+			.get(process.env.baseApi + 'posts/' + this.$route.params.id + '/comments')
+			.then(data => {
+				this.comments = data.data
+			})
+	},
+	// Head function is defined in each page. The content inside the function is used for SEO.
+	// This way we can have unique title, description, opengraph title, description and image for each page.
 	head () {
 		return {
 			title: 'Posts app | Single post',
@@ -64,24 +83,6 @@ export default {
 				}
 			]
 		}
-	},
-	async fetch () {
-		await this.$axios
-			.get(process.env.baseApi + 'posts/' + this.$route?.params?.id)
-			.then(data => {
-				this.postData = data.data
-			})
-
-		await this.$axios
-			.get(
-				process.env.baseApi +
-					'posts/' +
-					this.$route.params.id +
-					'/comments'
-			)
-			.then(data => {
-				this.comments = data.data
-			})
 	}
 }
 </script>

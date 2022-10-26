@@ -16,6 +16,10 @@
 
 .fs-xl{
 	font-size: 40px;
+
+	@media(max-width: 600px){
+		font-size: 26px;
+	}
 }
 
 .fw-bold{

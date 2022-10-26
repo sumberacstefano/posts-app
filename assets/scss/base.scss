@@ -61,3 +61,14 @@ hr{
 .rounded {
 	border-radius: 6px;
 }
+
+
+.back-to-top{
+	position: fixed;
+	right: 20px;
+	bottom: 20px;
+
+	img{
+		width: 50px;
+	}
+}
