@@ -35,4 +35,13 @@
 			background: rgba(#1a1a1a,1);
 		}
 	}
+
+	&--flex{
+		display: flex;
+		align-items: center;
+
+		img{
+			width: 11px;
+		}
+	}
 }

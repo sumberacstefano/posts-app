@@ -1,8 +1,9 @@
 <template>
 	<main>
 		<section v-if="postData" class="post ptb-xl mlr-main">
-			<nuxt-link to="/posts">
-				Back to posts
+			<nuxt-link to="/posts" class="btn btn--primary btn--flex">
+				<img src="@/assets/img/arrow-left.svg" />
+				<span class="ml-sm">Back to posts</span>
 			</nuxt-link>
 
 			<SinglePost :postData="postData" />
