@@ -1,6 +1,9 @@
 ## PostsApp build/run process
 
 ```bash
+# dotenv
+$ create .env file by .env.example
+
 # install all packages / dependencies
 $ npm install
 

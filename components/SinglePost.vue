@@ -91,6 +91,8 @@ export default {
 	}),
 
 	async fetch () {
+		// Currently what happens is that for each post we fetch user data, again and again even if it's the same user.
+		// We could use memoize to cache user data, so it makes the request once per user and afterwards it pulls data from cache.
 		await this.$axios
 			.get(`${process.env.baseApi}users/${this.postData.userId}`)
 			.then(data => {

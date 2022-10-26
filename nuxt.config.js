@@ -1,3 +1,5 @@
+const env = require('dotenv').config()
+
 export default {
 	// Global page headers: https://go.nuxtjs.dev/config-head
 	head: {
@@ -79,10 +81,7 @@ export default {
 		'@nuxtjs/axios'
 	],
 
-	env: {
-		baseURL: 'localhost:3000',
-		baseApi: 'https://jsonplaceholder.typicode.com/'
-	},
+	env: env.parsed,
 
 	// Axios module configuration: https://go.nuxtjs.dev/config-axios
 	axios: {
